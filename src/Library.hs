@@ -173,3 +173,22 @@ cuantaPotenciaNecesaria :: Number -> [Raton] -> Number
 cuantaPotenciaNecesaria potencia ratones 
     | lograEstabilizar (reduceFatFast potencia) ratones = potencia
     | otherwise = cuantaPotenciaNecesaria (potencia+1) ratones 
+
+-- Diseñar el siguiente experimento: dado una comunidad de ratones, encontrar la potencia ideal del 
+-- reduceFatFast necesaria para estabilizar la comunidad.
+potenciaIdeal :: [Raton]->Potencia
+potenciaIdeal  = primeroDe.potenciasValidas
+
+primeroDe :: [Potencia]->Potencia
+primeroDe [] = -1                   -- si devuelve -1 es porque no hay niguna potencia que lograEstabilizar
+primeroDe lista = head lista
+
+potenciasValidas :: [Raton]->[Potencia]
+potenciasValidas comunidad = filter (cond comunidad .  reduceFatFast)  numerosNaturales
+
+cond :: [Raton] -> Medicamento -> Bool
+cond comunidad = flip (lograEstabilizar) comunidad  
+
+--potenciaIdeal [huesudo ]
+--[huesudo] con reduceFatFast 29 llega a lograEstabilizar
+[19:33]
