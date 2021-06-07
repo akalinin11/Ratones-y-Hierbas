@@ -96,7 +96,7 @@ quitarEnferm :: [Enfermedad]->[Enfermedad]
 quitarEnferm listaEnfermedades = filter (condicionDiablo) listaEnfermedades
 
 condicionDiablo :: Enfermedad->Bool
-condicionDiablo enferm =    length enferm > 10
+condicionDiablo enferm = length enferm > 10
 ----------
 
 
@@ -137,7 +137,7 @@ listaAlcachofas potencia lista  | length lista /= potencia =  listaAlcachofas po
 sufijosInfecciosas = [ "sis", "itis", "emia", "cocos"]
 
 pdepCilina :: Medicamento
-pdepCilina = [] ++  map hierbaVerde sufijosInfecciosas
+pdepCilina = map hierbaVerde sufijosInfecciosas
 
 
 -- Punto 4)
@@ -166,6 +166,9 @@ tieneSobrepeso medicamento  =  (<1). peso . tomarMedicamento medicamento
 
 
 --c)
+
+
+-----------------FORMA DE AUGUSTO---------------------------------------------
 encontrarPotenciaIdealFatFast :: [Raton] -> Number
 encontrarPotenciaIdealFatFast ratones = cuantaPotenciaNecesaria 1 ratones
 
@@ -174,6 +177,10 @@ cuantaPotenciaNecesaria potencia ratones
     | lograEstabilizar (reduceFatFast potencia) ratones = potencia
     | otherwise = cuantaPotenciaNecesaria (potencia+1) ratones 
 
+
+
+
+-------------------------- FORMA DE LEAN------------------------------------------------------------
 -- Diseñar el siguiente experimento: dado una comunidad de ratones, encontrar la potencia ideal del 
 -- reduceFatFast necesaria para estabilizar la comunidad.
 potenciaIdeal :: [Raton]->Potencia
@@ -184,11 +191,26 @@ primeroDe [] = -1                   -- si devuelve -1 es porque no hay niguna po
 primeroDe lista = head lista
 
 potenciasValidas :: [Raton]->[Potencia]
-potenciasValidas comunidad = filter (cond comunidad .  reduceFatFast)  numerosNaturales
+potenciasValidas comunidad = filter (cond comunidad .  reduceFatFast)  listaNum  --Basicamente filtra los numero Naturales que cumplen la condicion, 
+                                                                                         --es decir a partir por ejem del 30 para arriba se cumple entonces se arma una 
+                                                                                          -- lista inf de esos numeros, en donde desp solo se devuelve el primero (con head)
 
 cond :: [Raton] -> Medicamento -> Bool
 cond comunidad = flip (lograEstabilizar) comunidad  
 
 --potenciaIdeal [huesudo ]
 --[huesudo] con reduceFatFast 29 llega a lograEstabilizar
-[19:33]
+
+-----------Forma de Rusito--------------------------------------
+
+--listaNum :: [Number]
+--listaNum = [1..]
+
+--cantidadIdeal :: (Number->Bool)->Number
+--cantidadIdeal condicion =  head (filter condicion listaNum)
+
+potenciaValida' :: [Raton]->Number
+potenciaValida' comunidad = cantidadIdeal (cond' comunidad .  reduceFatFast)
+
+cond' :: [Raton] -> Medicamento -> Bool
+cond' comunidad = flip (lograEstabilizar) comunidad  
