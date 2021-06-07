@@ -168,7 +168,7 @@ tieneSobrepeso medicamento  =  (<1). peso . tomarMedicamento medicamento
 --c)
 
 
------------------FORMA DE AUGUSTO---------------------------------------------
+----------------------------------------------------------
 encontrarPotenciaIdealFatFast :: [Raton] -> Number
 encontrarPotenciaIdealFatFast ratones = cuantaPotenciaNecesaria 1 ratones
 
@@ -180,7 +180,7 @@ cuantaPotenciaNecesaria potencia ratones
 
 
 
--------------------------- FORMA DE LEAN------------------------------------------------------------
+-------------------------------------------------------------------------------------
 -- Diseñar el siguiente experimento: dado una comunidad de ratones, encontrar la potencia ideal del 
 -- reduceFatFast necesaria para estabilizar la comunidad.
 potenciaIdeal :: [Raton]->Potencia
